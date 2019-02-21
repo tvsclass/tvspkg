@@ -14,6 +14,7 @@ esac
 
 
 exec 4>/dev/null
+exec 2>/dev/null
 
 echo tvspkg v1 by tvs_
 echo
