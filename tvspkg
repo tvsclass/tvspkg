@@ -6,7 +6,8 @@ case $USER in
 	;;
 
 	*)
-		echo ошибка: недостаточноправ для запуска tvspkg
+		echo ошибка: недостаточно прав для запуска tvspkg
+		exit 2
 	;;
 
 esac
@@ -22,7 +23,7 @@ case $1 in
 		
 		echo скачивание пакета...
 		
-		if git clone http://github.com/tvsclass/$2 >&2 ;
+		if git clone http://github.com/tvsclass/$2 >&4 ;
 			
 			then echo
 			
