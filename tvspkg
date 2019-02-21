@@ -55,15 +55,17 @@ case $1 in
 
 	-l)
 	
-		unzip -d ./.$2 ./$2.tvs
+		unzip -d ./.$2 ./$2.tvs & echo '(y/n)'
 			
-			cd ~/.$2
+			cd ./.$2
 			
 			if find iscript.sh;
 				then sh iscript.sh;
 				
 				else echo ошибка пакета. проверьте целостность пакета.;
 			fi
+			
+			echo ;
 	
 	;;
 
