@@ -1,5 +1,17 @@
 #!/bin/bash
 
+case $USER in
+	root)
+		echo
+	;;
+
+	*)
+		echo ошибка: недостаточноправ для запуска tvspkg
+	;;
+
+esac
+
+
 exec 4>/dev/null
 
 echo tvspkg v1 by tvs_
@@ -10,7 +22,7 @@ case $1 in
 		
 		echo скачивание пакета...
 		
-		if git clone http://github.com/tvsclass/$2 ;
+		if git clone http://github.com/tvsclass/$2 >&2 ;
 			
 			then echo
 			
@@ -51,6 +63,14 @@ case $1 in
 	
 	;;
 
+	*)
+		echo опция не найдена.
+		echo
+		echo опции:
+		echo
+		echo -l локальный пакет 
+		echo -i интернет пакет
+	;;
 
 
 esac
