@@ -16,7 +16,7 @@ case $1 in
 			
 			unzip -d ./.$2 ./$2.tvs
 			
-			cd ~/.$2
+			cd ./.$2
 			
 			if find iscript.sh;
 				then sh iscript.sh;
