@@ -24,6 +24,8 @@ case $1 in
 		
 		echo скачивание пакета...
 		
+		rm -r $2 >&4
+		
 		if git clone http://github.com/tvsclass/$2 >&4 ;
 			
 			then echo
