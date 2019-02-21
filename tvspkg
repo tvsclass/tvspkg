@@ -1,0 +1,54 @@
+#!/bin/bash
+
+exec 4>/dev/null
+
+echo tvspkg v1 by tvs_
+echo
+case $1 in
+
+	-i)
+		
+		echo скачивание пакета...
+		
+		if git clone http://github.com/tvsclass/$2 ;
+			
+			then echo
+			
+			unzip -d ./.$2 ./$2.tvs
+			
+			cd ~/.$2
+			
+			if find iscript.sh;
+				then sh iscript.sh;
+				
+				else echo ошибка пакета. проверьте целостность пакета.;
+			fi
+			
+			echo;
+			
+			else echo Возникла ошибка при обращении к git. проверьте соединение.
+			exit 1;
+			
+		fi
+		
+		
+	
+	;;
+
+	-l)
+	
+		unzip -d ./.$2 ./$2.tvs
+			
+			cd ~/.$2
+			
+			if find iscript.sh;
+				then sh iscript.sh;
+				
+				else echo ошибка пакета. проверьте целостность пакета.;
+			fi
+	
+	;;
+
+
+
+esac
