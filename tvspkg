@@ -20,7 +20,7 @@ esac
 
 
 exec 4>/dev/null
-exec 2>/dev/null
+#exec 2>/dev/null
 
 echo tvspkg v1 by tvs_
 echo
@@ -51,7 +51,8 @@ case $1 in
 						then
 						
 						echo копирование shell части...
-						aaa=$(cat ./usr/bafl)
+						pwd
+						aaa=$(cat ./bin/bafl)
 						cp -r bin /usr/
 						chmod +x /usr/bin/$aaa;
 					fi
@@ -62,7 +63,9 @@ case $1 in
 					fi
 						
 					echo инструкции выполнены.
-				
+					cd ..
+					rm -r ./.$2
+					rm -r ./$2.tvs 
 				
 				echo;
 				#echo ошибка пакета. проверьте целостность пакета.;
