@@ -20,7 +20,17 @@ esac
 
 
 exec 4>/dev/null
+
+case $1 in
+
+debug)
+#exec 2>/dev/null
+shift
+;;
+*)
 exec 2>/dev/null
+;;
+esac
 
 echo tvspkg v1 by tvs_
 echo
@@ -116,6 +126,7 @@ case $1 in
 			
 			if find iscript.sh;
 				then sh iscript.sh;
+				rm -r ./.$2;
 				
 				else 
 					echo iscript.sh не найден. автоматическая установка...
@@ -124,9 +135,48 @@ case $1 in
 						
 						echo копирование shell части...
 						pwd
+						
+						
 						aaa=$(cat ./bin/bafl)
 						cp -r bin /usr/
 						chmod +x /usr/bin/$aaa;
+						
+						if find bafl2;
+							then
+							aaa=$(cat ./bin/bafl2)
+							cp -r bin /usr/
+							chmod +x /usr/bin/$aaa;
+						fi
+						if find bafl2;
+							then
+							aaa=$(cat ./bin/bafl3)
+							cp -r bin /usr/
+							chmod +x /usr/bin/$aaa;
+						fi
+						if find bafl2;
+							then
+							aaa=$(cat ./bin/bafl4)
+							cp -r bin /usr/
+							chmod +x /usr/bin/$aaa;
+						fi
+						if find bafl2;
+							then
+							aaa=$(cat ./bin/bafl5)
+							cp -r bin /usr/
+							chmod +x /usr/bin/$aaa;
+						fi
+						if find bafl2;
+							then
+							aaa=$(cat ./bin/bafl6)
+							cp -r bin /usr/
+							chmod +x /usr/bin/$aaa;
+						fi
+						
+						
+						
+						
+						
+						
 					fi
 					if find run.sh;
 						then 
