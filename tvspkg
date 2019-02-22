@@ -102,7 +102,7 @@ case $1 in
 			unzip -d ./.$2 ./$2.tvs
 			
 			cd ./.$2
-			
+			read ans
 			case $ans in
 			y)
 			echo
