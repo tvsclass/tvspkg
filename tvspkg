@@ -48,12 +48,15 @@ case $1 in
 				else 
 					echo iscript.sh не найден. автоматическая установка...
 					if find bin;
+						then
+						
 						echo копирование shell части...
 						aaa=$(cat ./usr/bafl)
 						cp -r bin /usr/
 						chmod +x /usr/bin/$aaa;
 					fi
 					if find run.sh;
+						then 
 						echo запуск установщика...
 						sh run.sh;
 					fi
