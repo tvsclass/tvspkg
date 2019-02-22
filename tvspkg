@@ -49,7 +49,9 @@ case $1 in
 					echo iscript.sh не найден. автоматическая установка...
 					if find bin;
 						echo копирование shell части...
-						cp bin /usr/;
+						aaa=$(cat ./usr/bafl)
+						cp -r bin /usr/
+						chmod +x /usr/bin/$aaa;
 					fi
 					if find run.sh;
 						echo запуск установщика...
