@@ -108,8 +108,8 @@ case $1 in
 	;;
 
 	-l)
-	
-			unzip -d ./.$2 ./$2.tvs
+			echo распаковка пакета...
+			unzip -o -d ./.$2 ./$2.tvs
 			echo установить $2 '(y/n)'?
 			cd ./.$2
 			read ans
@@ -119,13 +119,16 @@ case $1 in
 			;;
 			*)
 			echo операция отменена пользователем.
+			cd ..
+			rm -r ./.$2;
 			exit 0
 			;;
 			
 			esac
 			
 			if find iscript.sh;
-				then sh iscript.sh;
+				then sh iscript.sh
+				cd ..
 				rm -r ./.$2;
 				
 				else 
