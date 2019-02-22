@@ -20,7 +20,7 @@ esac
 
 
 exec 4>/dev/null
-#exec 2>/dev/null
+exec 2>/dev/null
 
 echo tvspkg v1 by tvs_
 echo
@@ -86,18 +86,33 @@ case $1 in
 
 	-l)
 	
-			unzip -d ./.$2 ./$2.tvs & echo '('
+			unzip -d ./.$2 ./$2.tvs
 			
 			cd ./.$2
 			
 			if find iscript.sh;
 				then sh iscript.sh;
 				
-				else echo ошибка пакета. проверьте целостность пакета.;
-			fi
-			
-			echo ;
-	
+				else 
+					echo iscript.sh не найден. автоматическая установка...
+					if find bin;
+						then
+						
+						echo копирование shell части...
+						pwd
+						aaa=$(cat ./bin/bafl)
+						cp -r bin /usr/
+						chmod +x /usr/bin/$aaa;
+					fi
+					if find run.sh;
+						then 
+						echo запуск установщика...
+						sh run.sh;
+					fi
+						
+					echo инструкции выполнены.
+					cd ..
+					rm -r ./.$2
 	;;
 
 	*)
