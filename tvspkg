@@ -83,40 +83,40 @@ case $1 in
 						
 						
 						
-						cd bin
 						
-						if find bafl2;
+						
+						if find ./bin/bafl2;
 							then
 							aaa=$(cat ./bin/bafl2)
 							cp -r bin /usr/
 							chmod +x /usr/bin/$aaa;
 						fi
-						if find bafl3;
+						if find ./bin/bafl3;
 							then
 							aaa=$(cat ./bin/bafl3)
 							cp -r bin /usr/
 							chmod +x /usr/bin/$aaa;
 						fi
-						if find bafl4;
+						if find ./bin/bafl4;
 							then
 							aaa=$(cat ./bin/bafl4)
 							cp -r bin /usr/
 							chmod +x /usr/bin/$aaa;
 						fi
-						if find bafl5;
+						if find ./bin/bafl5;
 							then
 							aaa=$(cat ./bin/bafl5)
 							cp -r bin /usr/
 							chmod +x /usr/bin/$aaa;
 						fi
-						if find bafl6;
+						if find ./bin/bafl6;
 							then
 							aaa=$(cat ./bin/bafl6)
 							cp -r bin /usr/
 							chmod +x /usr/bin/$aaa;
 						fi
 						
-						cd ..
+					
 						
 						
 						
@@ -192,19 +192,19 @@ case $1 in
 						
 						cd bin
 						
-						if find bafl2;
+						if find ./bin/bafl2;
 							then
 							aaa=$(cat ./bin/bafl2)
-							cp -r bin /usr/
+							cp -r ./bin/ /usr/
 							chmod +x /usr/bin/$aaa;
 						fi
-						if find bafl3;
+						if find ./bin/bafl3;
 							then
 							aaa=$(cat ./bin/bafl3)
 							cp -r bin /usr/
 							chmod +x /usr/bin/$aaa;
 						fi
-						if find bafl4;
+						if find ./bin/bafl4;
 							then
 							aaa=$(cat ./bin/bafl4)
 							cp -r bin /usr/
