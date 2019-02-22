@@ -42,6 +42,19 @@ case $1 in
 			
 			cd ./.$2
 			
+			echo установить $2 '(y/n)'?
+			read ans 
+			case $ans in
+			y)
+			echo
+			;;
+			*)
+			echo операция отменена пользователем.
+			exit 0
+			;;
+			
+			esac
+			
 			if find iscript.sh;
 				then sh iscript.sh;
 				
@@ -89,6 +102,16 @@ case $1 in
 			unzip -d ./.$2 ./$2.tvs
 			
 			cd ./.$2
+			
+			case $ans in
+			y)
+			echo
+			;;
+			*)
+			echo операция отменена пользователем.
+			exit 0
+			;;
+			
 			
 			if find iscript.sh;
 				then sh iscript.sh;
