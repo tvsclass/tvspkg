@@ -112,6 +112,7 @@ case $1 in
 			exit 0
 			;;
 			
+			esac
 			
 			if find iscript.sh;
 				then sh iscript.sh;
