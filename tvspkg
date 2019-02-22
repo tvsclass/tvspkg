@@ -100,7 +100,7 @@ case $1 in
 	-l)
 	
 			unzip -d ./.$2 ./$2.tvs
-			
+			echo установить $2 '(y/n)'?
 			cd ./.$2
 			read ans
 			case $ans in
