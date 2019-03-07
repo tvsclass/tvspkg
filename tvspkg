@@ -5,7 +5,16 @@
 
 
 
+case $1 in
 
+nroot) 
+echo skeeping rootchecking... 
+
+shift
+
+;;
+
+*) 
 case $USER in
 	root)
 		echo
@@ -17,7 +26,9 @@ case $USER in
 	;;
 
 esac
+;;
 
+esac
 
 exec 4>/dev/null
 
