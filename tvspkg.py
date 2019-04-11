@@ -11,6 +11,10 @@ from libtvs import *
 from sys import argv
 import re
 
+def eroot():
+	if system('[ $USER == \'root\' ]') != 0:
+		error('you need root accsess to run this function')
+		exit(2)
 
 
 
@@ -49,8 +53,18 @@ def n():
 	print('',end='')
 
 
-def giti(what):
+def giti():
+
+	try:
+		print('arg1: ' + s2)
+		print('arg2: ' + s3)
+	except NameError:
+		error('more arguments needed')
+		exit(2)
+
+
 	if s2 == '-t':
+		eroot()
 		check('git')
 
 		if system('git clone https://github.com/tvsclass/' + s3) == 0:
@@ -70,9 +84,59 @@ def giti(what):
 			exit(2)
 
 
+	elif s2 == '-m':
+		print('running ' + 'git clone https://github.com/' + s4 + '/' + s3 + '...')
+		if system('git clone https://github.com/' + s4 + '/' + s3) == 0:
+			check('make')
+			if system('cd ' + s3 + ' && find ./configure') != 0:
+				if system('cd ' + s3 + ' && find ./autogen.sh >> /dev/null') != 0 or system('cd ' + s3 + ' && find ./bootstrap >> /dev/null') != 0: 
+					if system('cd ' + s3 + ' && chmod +x ./autogen.sh && ./autogen.sh') != 0:
+						system('cd ' + s3 + ' && chmod +x ./bootstrap && ./bootstrap')
+	
+				else:
+					if system('cd ' + s3 + '''
+aclocal
+autoheader
+automake --gnu --add-missing --copy --foreign
+autoconf -f -Wall ''') != 0:
+						error('configuring error')
+						bash('rm -r ' + s3 + ' -f')
+						exit(2)
+				if bash('cd ' + s3 + ' && chmod +x ./configure && ./configure') != 0:
+					error('configuring error')
+					bash('rm -r ' + s3 + ' -f')
+					exit(2)
+				if bash('cd' + s3 + ' && make -B && make install DESTDIR=/usr') != 0:
+					error('making error')
+					bash('rm -r ' + s3 + ' -f')
+					exit(2)
+				else:
+					ok(purple(s3) + ' installed')
+					bash('rm -r ' + s3 + ' -f')
+
+			else:
+				system('cd ' + s3 + ' && chmod +x ./configure && ./configure')	
+				if bash('cd ' + s3 + ' && make -B && make install DESTDIR=/usr') != 0:
+					error('making error')
+					bash('rm -r ' + s3 + ' -f')
+					exit(2)
+				else:
+					ok(purple(s3) + ' installed')
+					bash('rm -r ' + s3 + ' -f')
+					
+					
+						
+
+
+
+
+	else:
+		error('wrong parameter')
+
+
 def main():
 	if s1 == '-git':
-		giti(s2)
+		giti()
 	else:
 		error('option \'' + s1 + '\' not found')
 		exit(2)
