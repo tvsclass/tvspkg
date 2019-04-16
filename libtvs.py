@@ -7,7 +7,7 @@ from os import system as bash
 
 try:
     from termcolor import colored
-except ModuleNotFoundError:
+except:
     print('can\'t find termcolor.')                 
     print('launching installer...')
     print('welcome to tpipinstaller-py3')
