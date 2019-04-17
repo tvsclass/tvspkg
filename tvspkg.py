@@ -11,14 +11,23 @@ from libtvs import *
 from sys import argv
 import re
 
+# =================================================================================================== #
+
 def eroot():
 	if system('[ $USER == \'root\' ]') != 0:
 		error('you need root accsess to run this function')
 		exit(2)
 
 
+# ================================================================================== #
+############### MAKE-ENGINE #######################
 
-def make(si3):
+def make(way_to_directory_with_source):
+	eroot()
+	si3=way_to_directory_with_source
+	if system('cd ' + si3 + ' >>/dev/null') != 0:
+		error(si3 + ': directory not found')
+		exit(10)
 	check('make')
 	ans=input('Configure ' + purple(si3) + ' with configure.sh? ' + green('[y]yes ') + red('[n]no '))
 	if ans != 'y':
@@ -72,8 +81,11 @@ autoconf -f -Wall >> /dev/null ''') != 0:
 			ok(purple(si3) + ' installed')
 			bash('rm -r ' + si3 + ' -f')
 
+# ================================================================================================ #
 
 
+
+# ================================================================================================ #
 ######## ESSER V1 BY tvsclass #########
 # простая обработка параметров bash-like style
 
@@ -94,8 +106,22 @@ while count < 20:
       break
 
 
+# Функции: ======== #
+
+def findopts(opt, errorr, kolvo):
+	try:
+		print(blue('ESSER: service-message: ') + 'options found. ' + eval(opt))
+	except:
+		error('ESSER: ' + errorr + ': ' + kolvo + ' arguments needed')
+		print('type tvspkg --help to see usage.')
+		exit(2)
+
+
 ########### end. ##############
 ###############################
+# ================================================================================================== #
+
+
 
 def check(what):
 	if bash(what + ' --help >> /dev/null') == 0:
@@ -107,17 +133,46 @@ def check(what):
 def n():
 	print('',end='')
 
+def help():
+	print('''
+tvspkg v4 beta by tvsclass
+	
+	Usage:
+		install:
+			[-l / --local]: tvspkg install -l <way to directory with source>
+				= make and install from directory
+		-git:
+			[-t]: tvspkg -git -t <name of tvs package>
+				= install tvspkg package from tvsclass\'s github 
+			[-m]: tvspkg -git -m <repository name (github)> <user name (github)>
+				= make and make install from github
+	tvsclass 2019
+	''')
+	exit(0)
+
+# =================================================================================================== #
+
+def install1():
+	findopts('s2', 'install', '2')
+	try:
+		print('call--' + s3)
+		if s2 == '--local' or s2 == '-l':
+			findopts('s3', 'install-local', '3')
+			make(s3)
+	except:
+		pass
+
+
+
+# =================================================================================================== #
+
+
+
+# =================================================================================================== #
 
 def giti():
 
-	try:
-		print('arg1: ' + s2)
-		print('arg2: ' + s3)
-		bash('pwd')
-	except:
-		error('more arguments needed')
-		exit(2)
-
+	findopts('s4', '-git', '4')
 
 	if s2 == '-t':
 		eroot()
@@ -167,14 +222,34 @@ def giti():
 	else:
 		error('wrong parameter')
 
+# =================================================================================================== #
+
+
+# =================================================================================================== #
 
 def main():
+
+	ok('tvspkg loaded')
 	if s1 == '-git':
 		giti()
+	elif s1 == 'install':
+		install1()
+	elif s1 == '-h' or s1 == '--help' or s1 == 'help':
+		help()
 	else:
 		error('option \'' + s1 + '\' not found')
+		print('type tvspkg --help to see usage.')
 		exit(2)
 
 
-ok('tvspkg loaded')
+# =================================================================================================== #
+
+
+
+
+# =================================================================================================== #
+# =================================================================================================== #
+# =================================================================================================== #
+# Ececutable part
+
 main()
